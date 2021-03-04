@@ -196,7 +196,7 @@
       L.DomEvent
         .on(document, 'keyup', this._onKeyUp, this)
         .on(document, 'keydown', this._onKeyPress, this)
-        .on(document, 'contextmenu', this._onMouseDown, this)
+        .on(document, 'pointerdown contextmenu', this._onMouseDown, this)
         .on(window, 'blur', this._onBlur, this);
       this._map
         .on('dragstart', this._onMouseDown, this);
@@ -210,7 +210,7 @@
       L.DomEvent
         .off(document, 'keyup', this._onKeyUp, this)
         .off(document, 'keydown', this._onKeyPress, this)
-        .off(document, 'contextmenu', this._onMouseDown, this)
+        .off(document, 'pointerdown contextmenu', this._onMouseDown, this)
         .off(window, 'blur', this._onBlur, this);
       this._map.off('dragstart', this._onMouseDown, this);
     },
@@ -239,8 +239,8 @@
       this._startLayerPoint = layerPoint;
 
       L.DomEvent
-        .on(document, 'mousemove', this._onMouseMove, this)
-        .on(document, 'mouseup', this._onMouseUp, this)
+        .on(document, 'touchmove mousemove', this._onMouseMove, this)
+        .on(document, 'touchend pointerdownmouseupmouseupmouseup', this._onMouseUp, this)
         .on(document, 'keydown', this._onKeyDown, this);
     },
 
