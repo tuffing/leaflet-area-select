@@ -210,7 +210,8 @@
       L.DomEvent
         .off(document, 'keyup', this._onKeyUp, this)
         .off(document, 'keydown', this._onKeyPress, this)
-        .off(document, 'pointerdown contextmenu', this._onMouseDown, this)
+        .off(document, 'pointerdown', this._onMouseDown, this)
+        .off(document, 'contextmenu', this._onMouseDown, this)
         .off(window, 'blur', this._onBlur, this);
       this._map.off('dragstart', this._onMouseDown, this);
     },
@@ -240,7 +241,7 @@
 
       L.DomEvent
         .on(document, 'touchmove mousemove', this._onMouseMove, this)
-        .on(document, 'touchend pointerdownmouseupmouseupmouseup', this._onMouseUp, this)
+        .on(document, 'touchend mouseup', this._onMouseUp, this)
         .on(document, 'keydown', this._onKeyDown, this);
     },
 
@@ -365,6 +366,10 @@
           bounds: bounds
         });
       });
+      
+    	L.DomEvent.off(document, 'touchmove mousemove', this._onMouseMove, this)
+				.off(document, 'touchend mouseup', this._onMouseUp, this)
+				.off(document, 'keydown', this._onKeyDown, this);
     }
 
   });
